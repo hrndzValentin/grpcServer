@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.vinsguru.GrpcServermongoDb.product";
+
+message Product{
+  int32 Id = 1;
+  string code = 2;
+  string name = 3;
+  double priceSale = 4;
+}
+
+message ProductPostResponse{
+  string mensaje = 1;
+}
+
+message ProductSearchRequest{
+  int32 Id = 1;
+}
+
+message ProductResponse{
+  Product productoDto = 1;
+}
+
+service ProductService{
+  rpc GetProductById(ProductSearchRequest) returns (ProductResponse);
+  rpc PostProduct(Product) returns (ProductPostResponse);
+}
